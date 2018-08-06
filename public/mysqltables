@@ -1,0 +1,40 @@
+moben
+//成功案例表
+create table if not exists succase (
+`id` int key auto_increment,
+`title` varchar(100) not null unique comment '成功案例名称',
+`image` varchar(100)  comment '案例图片路径',
+`description` varchar(255) default '' comment '描述',
+`typeid` int not null comment '类型id',
+`url` varchar(255) unique not null comment '案例网址'
+);
+
+//案例类型名
+create table type(
+`id` int key auto_increment,
+`title`  varchar(50) not null unique comment '案例类型名',
+`foreign_title` varchar(50) not null unique default ''  comment '对应英文简称'
+);
+//管理员表
+create table if not exists user(
+`id` int key auto_increment,
+`username` varchar(50)  not null unique comment '后台管理员',
+`password` varchar(32) not null,
+`rank` tinyint(1) not null default 0 comment '权限,默认0,1是特殊权限,8最大权限,9是删除'
+);
+//留言表
+create table if not exists message(
+`id` int key auto_increment,
+`username` varchar(100)  not null comment '留言人姓名',
+`email` varchar(100) not null comment '留言人邮箱',
+`phone` varchar(100) not null comment '留言人手机号',
+`content` text not null comment '留言内容',
+`created` int unsigned comment '留言时间'
+);
+
+//公司服务
+create table business (
+`id` int key auto_increment,
+`title` varchar(50) not null unique comment '服务名',
+`content` text not null comment '服务介绍'
+);
